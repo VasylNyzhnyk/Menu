@@ -1,16 +1,24 @@
-<!--<!DOCTYPE HTML>
-<html>
+<!--
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Menu</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<p>select the menu   <a href="/getAll">AllDish</a></p>
-<p>select the menu   <a href="/vegan">Vegan</a></p>
-<p>select the menu   <a href="/noVegan">NoVegan</a></p>
+<table class="dishList">
+    <tr th:each="dish : ${dishList}">
+        &lt;!&ndash;<td><span th:text="${dish.idDish}"></span> UAH</td>&ndash;&gt;
+        <td th:text="${dish.idDish}"/>
+        <td th:text="${dish.title}"/>
+        <td th:text="${dish.price}"/>
+        <td th:text="${dish.vegan}"/>
+        <td th:text="${dish.calories}"/>
+    </tr>
+</table>
 </body>
 </html>-->
+
 
 <!DOCTYPE HTML>
 <html>
@@ -24,7 +32,6 @@
 </head>
 <body>
 
-
 <div class="container">
 
     <form>
@@ -34,8 +41,6 @@
             <option>NoWegan</option>
         </select>
     </form>
-
-
 
     <div>
         <h2 class="text-primary">My Menu</h2>
@@ -129,4 +134,3 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
-
