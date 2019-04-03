@@ -1,12 +1,14 @@
 package menu.controller;
 
 
-import menu.model.Dish;
-import menu.service.DishService;
+import menu.service.Dish;
+import menu.service.DishRepository;
+//import menu.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -14,25 +16,40 @@ import java.util.List;
 @Controller
 public class MenuController {
     @Autowired
-    private DishService dishService;
+    private DishRepository dishRepository;
 
-    @GetMapping("/vegan")
-    public String vegan(@RequestParam(name = "name", required = false, defaultValue = "vegan") String name, Model model) {
-        model.addAttribute("name", name);
+
+
+    @GetMapping("/menu")
+    public String getAll(@RequestParam(name = "vegan", required = false) Boolean vegan,Model model) {
+
+        List<Dish> dishList = dishRepository.findByVegan(vegan);
+        model.addAttribute("dishList", dishList);
+
         return "menu";
     }
 
-    @GetMapping("/noVegan")
-    public String noVegan(@RequestParam(name = "name", required = false, defaultValue = "noVegan") String name, Model model) {
-        model.addAttribute("name", name);
+    @PostMapping("/menuPost")
+    public String getAllPost(@RequestParam(name = "vegan", required = false) Boolean vegan,Model model) {
+
+        List<Dish> dishList = dishRepository.findByVegan(vegan);
+        model.addAttribute("dishList", dishList);
+
         return "menu";
     }
 
-    @GetMapping("/getAll")
-    public String getAll(Model model) {
-        List<Dish> dishList = dishService.generatDishesMap();
-        model.addAttribute("dishList",dishList);
-        return "menu";
+    @GetMapping("/menu/price") // Controller = Server, Browser = Client;    Client->Server // MVC V(request)->C->M->V(response=html)
+    public String getAllByPrice(@RequestParam(name = "price", required = false)Double price,Model model) {
+        List<Dish> dishList = dishRepository.findByPrice(price);
+        model.addAttribute("dishListAttribute", dishList);
+
+        return "menuNew";
+        // Spring Thymelief
+    }
+
+    @GetMapping("/")
+    public String getIndex(Model model) {
+        return "redirect:/menu";
     }
 
 }

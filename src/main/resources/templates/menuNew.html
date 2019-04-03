@@ -20,15 +20,12 @@
             <option value="false">NoVegan</option>
         </select>
 
-        <button type="submit">Select</button>
-    </form>
-
-    <form action="/menuPost" method="post">
-        <select name="vegan">
+      <!--  <select name="filter">
             <option value="">All</option>
-            <option value="true">Vegan</option>
-            <option value="false">NoVegan</option>
-        </select>
+            <option value="FRESH">Vegan</option>
+            <option value="VENAN">NoVegan</option>
+            <option value="NO_VENAN">NoVegan</option>
+        </select>-->
 
         <button type="submit">Select</button>
     </form>
@@ -49,7 +46,7 @@
 
         </tr>
         </thead>
-            <tr th:each="dish : ${dishListAttribute}">
+            <tr th:each="dish : ${dishList}">
                 <td th:text="${dish.idDish}"/>
                 <td th:text="${dish.title}"/>
                 <td th:text="${dish.price}"/>

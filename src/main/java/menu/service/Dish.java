@@ -1,6 +1,14 @@
-package menu.model;
+package menu.service;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Dish {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idDish;
     private String title;
     private double price;
@@ -38,7 +46,7 @@ public class Dish {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

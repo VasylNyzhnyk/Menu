@@ -1,13 +1,13 @@
 package menu.service;
 
-import menu.model.Dish;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+/*@Service
 public class DishService {
-    public List<Dish> generatDishesMap() {
+    public List<Dish> generatAllDishesMap() {
         List<Dish> dishes = new ArrayList<>();
         dishes.add(new Dish(1, "каша-гречана", 12, true, 300));
         dishes.add(new Dish(2, "картопляне-пюре", 17, true, 500));
@@ -21,4 +21,20 @@ public class DishService {
         return dishes;
 
     }
-}
+
+      public List<Dish> generatDishesMap(Boolean vegan) {
+        List<Dish> allDishes = generatAllDishesMap();
+        if (vegan == null) {
+            return allDishes; // return dishes;
+        }
+        List<Dish> veganOrNoVeganList = new ArrayList<>();
+        for (Dish dish : allDishes) {
+            if (dish.isVegan() == vegan) {
+                veganOrNoVeganList.add(dish);
+            }
+        }
+        return veganOrNoVeganList;
+    }
+
+}*/
+
