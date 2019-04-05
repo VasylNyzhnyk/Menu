@@ -18,8 +18,6 @@ public class MenuController {
     @Autowired
     private DishRepository dishRepository;
 
-
-
     @GetMapping("/menu")
     public String getAll(@RequestParam(name = "vegan", required = false) Boolean vegan,Model model) {
 
@@ -43,7 +41,7 @@ public class MenuController {
         List<Dish> dishList = dishRepository.findByPrice(price);
         model.addAttribute("dishListAttribute", dishList);
 
-        return "menuNew";
+        return "menu";
         // Spring Thymelief
     }
 
