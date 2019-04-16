@@ -1,11 +1,11 @@
-package menu.service;
+/*package menu.service;
 
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/*@Service
+@Service
 public class DishService {
     public List<Dish> generatAllDishesMap() {
         List<Dish> dishes = new ArrayList<>();
