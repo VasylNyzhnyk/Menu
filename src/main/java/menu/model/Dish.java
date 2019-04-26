@@ -1,4 +1,4 @@
-package menu.service;
+package menu.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,17 +14,15 @@ public class Dish {
     private double price;
     private boolean vegan;
     private int calories;
+    private String pictureUrl;
+
 
     public Dish() {
     }
 
-    public Dish(Integer idDish, String title, double price, boolean vegan, int calories) {
-        this.idDish = idDish;
-        this.title = title;
-        this.price = price;
-        this.vegan = vegan;
-        this.calories = calories;
-    }
+    public String getPictureUrl() { return pictureUrl; }
+
+    public void setPictureUrl(String pictureUrl) { this.pictureUrl = pictureUrl; }
 
     public Integer getIdDish() {
         return idDish;
@@ -74,6 +72,7 @@ public class Dish {
                 ", price=" + price +
                 ", vegan=" + vegan +
                 ", calories=" + calories +
+                ", pictureUrl='" + pictureUrl + '\'' +
                 '}';
     }
 }

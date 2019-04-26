@@ -1,13 +1,19 @@
 package menu;
 
-import menu.service.Dish;
+import menu.model.Dish;
+import menu.model.OrderPosition;
+import menu.model.Orders;
 import menu.service.DishRepository;
+import menu.service.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
+
+import java.util.ArrayList;
 
 @SpringBootApplication
 public class Application {
@@ -18,7 +24,7 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner demo(DishRepository repository) {
+    public CommandLineRunner demo(OrderRepository repository) {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
@@ -31,7 +37,27 @@ public class Application {
                 repository.save(new Dish(null, "курча-табака", 40, false, 900));*/
 
                 // fetch all customers
-                log.info("Dish found with findAll():");
+                Orders orders = new Orders();
+                orders.setSum(30.00);
+
+                // Fill order positions
+                OrderPosition orderPosition1 = new OrderPosition();
+                orderPosition1.setAmount(2);
+
+                Dish dish = new Dish();
+                dish.setIdDish(7);
+                orderPosition1.setDish(dish);
+
+                // Set order positions to order
+                ArrayList<OrderPosition> orderPositions = new ArrayList<OrderPosition>();
+                orderPositions.add(orderPosition1);
+                orders.setOrderPositions(orderPositions);
+                repository.save(orders);
+
+
+
+
+              /*  log.info("Dish found with findAll():");
                 log.info("-------------------------------");
                 for (Dish dish : repository.findAll()) {
                     log.info(dish.toString());
@@ -39,7 +65,7 @@ public class Application {
                 log.info("Dish found by price");
                 log.info(repository.findByPrice((double)12).toString());
 
-                log.info("");
+                log.info("");*/
 
             }
         };

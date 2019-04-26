@@ -1,5 +1,6 @@
 package menu.service;
 
+import menu.model.Dish;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

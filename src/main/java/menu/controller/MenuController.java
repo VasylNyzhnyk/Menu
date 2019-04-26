@@ -1,5 +1,5 @@
 package menu.controller;
-import menu.service.Dish;
+import menu.model.Dish;
 import menu.service.DishRepository;
 //import menu.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;

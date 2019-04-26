@@ -10,7 +10,42 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<style>
+    .img-hover img {
+    -webkit-transition: all .3s ease; /* Safari and Chrome */
+  	-moz-transition: all .3s ease; /* Firefox */
+  	-o-transition: all .3s ease; /* IE 9 */
+  	-ms-transition: all .3s ease; /* Opera */
+  	transition: all .3s ease;
+  	position:relative;
+}
+.img-hover img:hover {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform:translateZ(0) scale(2.50); /* Safari and Chrome */
+    -moz-transform:scale(1.50); /* Firefox */
+    -ms-transform:scale(1.50); /* IE 9 */
+    -o-transform:translatZ(0) scale(1.50); /* Opera */
+    transform:translatZ(0) scale(1.50);
+}
 
+.img-hover:hover:after {
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:2;
+    width:30px;
+    height:30px;
+    <!--border:1px solid #000;-->
+}
+
+.grayscale {
+  -webkit-filter: brightness(1.10) grayscale(100%) contrast(90%);
+  -moz-filter: brightness(1.10) grayscale(100%) contrast(90%);
+  filter: brightness(1.10) grayscale(100%);
+}
+</style>
 <div class="container">
 
     <div>
@@ -31,7 +66,7 @@
         <button type="submit">AddDishes</button>
     </form>
 
-      <div>
+    <div>
         <h2 class="text-primary">Menu</h2>
     </div>
 
@@ -55,8 +90,7 @@
             <td th:text="${dish.vegan}"/>
             <td th:text="${dish.calories}"/>
             <td><input type="checkbox" class="form-check-input"></td>
-            <td><img height="30px" src= "/images/kasha_grethana.jpg"
-                     alt="гречневая каша" />
+            <td><div class="col-md-4 img-hover"><img class="img-responsive img-rounded" height="30px" th:src="${dish.pictureUrl}"/></div></td>
 
         </tr>
     </table>
@@ -67,9 +101,10 @@
     <form action="/saveDishes" method="get">
         <button type="submit">Cancel</button>
 
-    </form><form action="/saveDishes" method="get">
-    <button type="submit">Exit</button>
-</form>
+    </form>
+    <form action="/saveDishes" method="get">
+        <button type="submit">Exit</button>
+    </form>
 
 
 </div>
